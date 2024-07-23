@@ -5,10 +5,12 @@ const sequelize = require('../controllers/connection');
 class Closet_category extends Model {}
 
 Closet_category.init({
-    users: {
-        id: DataTypes.INTEGER,         
+    id: {
+        type: DataTypes.INTEGER,   
+        primaryKey: true,    
+        autoIncrement: true  
     },
-    username: {
+    category_name: {
         type: DataTypes.STRING
     }
 });
