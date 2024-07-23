@@ -1,7 +1,7 @@
 {
-  "name": "wearme",
+  "name": "project-2",
   "version": "1.0.0",
-  "description": "WearMe is an app dedicated to helping you keep track of your clothing and accessories inventory. Not sure what to wear to your next function? Let WearMe help you decide!",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,8 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2",
-    "pg": "^8.12.0",
-    "sequelize": "^6.37.3"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^8.11.3",
+    "sequelize": "^5.21.7"
   }
 }

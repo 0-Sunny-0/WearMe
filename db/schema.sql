@@ -1,3 +1,0 @@
-DROP DATABASE IF EXISTS wearMe_db;
-
-CREATE DATABASE wearMe_db;
