@@ -12,7 +12,7 @@ Outfit.init(
       autoIncrement: true
     },
     items: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
       allowNull: false
     },
     username: {
