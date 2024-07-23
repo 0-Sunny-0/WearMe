@@ -4,7 +4,7 @@ const sequelize = require('../config/connection.js');
 
 class OutfitItem extends Model {}
 
-Outfit-Item.init(
+OutfitItem.init(
   {
     id: {
       type: DataTypes.INTEGER,
