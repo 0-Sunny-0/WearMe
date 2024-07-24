@@ -11,7 +11,7 @@ ClosetCategory.init(
       primaryKey: true,
       autoIncrement: true
     },
-    closet_category: {
+    name: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
