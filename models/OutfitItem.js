@@ -30,7 +30,14 @@ OutfitItem.init(
     owner: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    user_id: {
+      type: DataTypes.INTERGER,
+      references: {
+        model: 'user',
+        key: 'id'
+      },
+    },
   },
   {
     sequelize,
