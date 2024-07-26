@@ -8,5 +8,5 @@ User.hasMany (Outfit, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
-
+//add in other necessary routes
 module.exports = { Outfit, ClothingSlot, OutfitItem, User, ClosetCategory };
