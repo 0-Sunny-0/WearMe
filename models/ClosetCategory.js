@@ -14,14 +14,7 @@ ClosetCategory.init(
     closet_category: {
       type: DataTypes.INTEGER,
       allowNull: false
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id'
-      },
-    },
+    }
   },
   {
     sequelize,
