@@ -1,36 +1,42 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize'); // Import Sequelize Model and DataTypes
+const bcrypt = require('bcrypt'); // Import bcrypt for password hashing
+const sequelize = require('../config/connection.js'); // Import Sequelize instance
 
-const sequelize = require('../config/connection.js');
-
+// Define User class extending Sequelize Model
 class User extends Model {}
 
+// Initialize User model
 User.init(
   {
     id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
+      type: DataTypes.INTEGER, // Integer type
+      primaryKey: true, // Primary key
+      autoIncrement: true // Auto-increment
     },
     username: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING, // String type
+      allowNull: false // Non-nullable
     },
     email: {
-      type: DataTypes.STRING,
-      allowNull: true
+      type: DataTypes.STRING, // String type
+      allowNull: true // Nullable
     },
     password: {
-      type: DataTypes.STRING,
-      allowNull: true
+      type: DataTypes.STRING, // String type
+      allowNull: true // Nullable
     }
   },
   {
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'user',
+    hooks: {
+      // Hook to hash password before creating a new user
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10); // Hash password with bcrypt
+        return newUserData; // Return modified user data
+      },
+    },
+    sequelize, // Sequelize instance
+    timestamps: false, // Disable timestamps
+    freezeTableName: true, // Prevent table name pluralization
+    underscored: true, // Use snake_case for automatically added attributes
   }
 );
-
-module.exports = User;

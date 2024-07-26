@@ -1,24 +1,62 @@
+// Import necessary modules
 const express = require('express');
-const routes = require('./routes');
+const session = require('express-session');
+const exphbs = require('express-handlebars');
 const sequelize = require('./config/connection');
-require('dotenv').config(); // Load environment variables from .env file
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const routes = require('./routes');
 
-const app = express(); // Initialize express app
-const PORT = process.env.PORT || 3001; // Set the port to the environment variable or default to 3001
+// Load environment variables from .env file
+require('dotenv').config();
 
-app.use(express.json()); // Middleware to parse JSON bodies
-app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
+// Initialize express app
+const app = express();
 
-app.use(routes); // Use the routes defined in routes folder
+// Set the port to the environment variable or default to 3001
+const PORT = process.env.PORT || 3001;
 
-// Test the database connection, sync models, and then start the server
+// Create an instance of Handlebars
+const hbs = exphbs.create({});
+
+// Configure session middleware
+const sess = {
+  secret: process.env.SESSION_SECRET, // Use the session secret from environment variables
+  cookie: {}, // Configure cookie settings (empty object for default settings)
+  resave: false, // Prevent session from being saved back to the session store if it wasn't modified
+  saveUninitialized: true, // Save uninitialized sessions to the store
+  store: new SequelizeStore({
+    db: sequelize // Use Sequelize to store session data
+  })
+};
+
+// Use the session middleware
+app.use(session(sess));
+
+// Set the Handlebars engine
+app.engine('handlebars', hbs.engine);
+
+// Set the view engine to Handlebars
+app.set('view engine', 'handlebars');
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Middleware to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+
+// Use the routes defined in the routes folder
+app.use(routes);
+
+// Example route to render the home page with someArr data
+const someArr = [1, 2, 3];
+app.get('/', (req, res) => {
+  res.render('home', { someArr });
+});
+
+// Test the database connection and then start the server
 sequelize.authenticate().then(() => {
   console.log('Database connection has been established successfully.');
-  return sequelize.sync({ force: false }); // Sync models
-}).then(() => {
   app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}.`); // Start the server and listen on the specified port
+    // Server is listening on the specified port
   });
-}).catch((err) => {
-  console.error('Unable to connect to the database or sync models:', err); 
 });

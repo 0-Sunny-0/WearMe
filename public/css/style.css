@@ -1,0 +1,21 @@
+body {
+  background-color: antiquewhite;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+nav {
+  border-bottom: 5px solid orangered;
+  color: orangered;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10%;
+}
+
+nav div {
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+}
