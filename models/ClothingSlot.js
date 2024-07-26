@@ -16,7 +16,7 @@ ClothingSlot.init(
       allowNull: false
     },
     user_id: {
-      type: DataTypes.INTERGER,
+      type: DataTypes.INTEGER,
       references: {
         model: 'user',
         key: 'id'
