@@ -1,7 +1,6 @@
 // Import seed functions for different data models
-const seedClosetCategories = require('./ClosetCategorySeeds');
-const seedOutfits = require('./OutfitSeed');
-const seedOutfitItems = require('./OutfitItemSeed');
+const seedOutfits = require('./OutfitSeeds');
+const seedOutfitItems = require('./OutfitItemSeeds');
 
 // Import the Sequelize connection instance
 const sequelize = require('../config/connection');
@@ -11,10 +10,6 @@ const seedAll = async () => {
   // Sync the database and force drop/recreate tables
   await sequelize.sync({ force: true });
   console.log('\n----- DATABASE SYNCED -----\n');
-
-  // Seed closet categories
-  await seedClosetCategories();
-  console.log('\n----- CLOSET CATEGORIES SEEDED -----\n');
 
   // Seed outfits
   await seedOutfits();

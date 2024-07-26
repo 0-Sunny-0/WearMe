@@ -3,7 +3,12 @@ const { Outfit } = require('../models');
 
 // Array to hold outfit data for seeding
 const outfitData = [
-  // Add outfit objects here
+  {
+    name: 'Aloha'
+  },
+  {
+    name: 'Punk'
+  },
 ];
 
 // Function to bulk create outfits in the database

@@ -40,3 +40,5 @@ User.init(
     underscored: true, // Use snake_case for automatically added attributes
   }
 );
+
+module.exports = User; // Export User model
