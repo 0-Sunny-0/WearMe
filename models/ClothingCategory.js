@@ -4,11 +4,11 @@ const { Model, DataTypes } = require('sequelize');
 // Importing the sequelize instance from the connection configuration
 const sequelize = require('../config/connection.js');
 
-// Defining the Outfit class which extends the Model class from sequelize
-class Outfit extends Model {}
+// Defining the ClosetCategory class which extends the Model class from sequelize
+class ClosetCategory extends Model {}
 
-// Initializing the Outfit model with its attributes and configurations
-Outfit.init(
+// Initializing the ClosetCategory model with its attributes and configurations
+ClosetCategory.init(
   {
     // Defining the id attribute with type INTEGER, primary key, and auto-increment
     id: {
@@ -16,14 +16,9 @@ Outfit.init(
       primaryKey: true,
       autoIncrement: true
     },
-    // Defining the name attribute with type STRING and not allowing null values
+    // Defining the name attribute with type INTEGER (should be STRING) and not allowing null values
     name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    // Defining the items attribute with type ARRAY of INTEGER and not allowing null values
-    items: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      type: DataTypes.INTEGER, // This should likely be DataTypes.STRING
       allowNull: false
     }
   },
@@ -37,9 +32,9 @@ Outfit.init(
     // Using underscored naming convention for automatically added fields
     underscored: true,
     // Setting the model name
-    modelName: 'outfit',
+    modelName: 'closet_category',
   }
 );
 
-// Exporting the Outfit model for use in other parts of the application
-module.exports = Outfit;
+// Exporting the ClosetCategory model for use in other parts of the application
+module.exports = ClosetCategory;
