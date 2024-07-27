@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outfit Items</title>
+</head>
+<body>
+    <h1>Outfit Items</h1>
+    <ul id="outfit-items-list"></ul>
+
+    <script>
+        async function fetchOutfitItems() {
+            try {
+                const response = await fetch('/api/outfit-items');
+                if (!response.ok) {
+                    throw new Error('Error');
+                }
+                const outfitItems = await response.json();
+
+                const outfitItemsList = document.getElementById('outfit-items-list');
+
+                outfitItems.forEach((outfit) => {
+                    const showItem = document.createElement('li');
+                    showItem.textContent = `${outfit.name}, ${outfit.description}`;
+                    outfitItemsList.appendChild(showItem);
+                });
+            }catch (error) {
+                console.error('There is a problem:', error);
+            }
+        }
+
+        window.onload = fetchOutfitItems;
+    </script>
+    
+</body>
+</html>
