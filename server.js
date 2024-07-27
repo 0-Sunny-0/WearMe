@@ -4,7 +4,8 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const routes = require('./routes');
+const path = require('path');
+const routes = require('./controllers');
 
 // Load environment variables from .env file
 require('dotenv').config();
@@ -52,6 +53,9 @@ const someArr = [1, 2, 3];
 app.get('/', (req, res) => {
   res.render('home', { someArr });
 });
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Test the database connection and then start the server
 sequelize.authenticate().then(() => {
