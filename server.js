@@ -58,5 +58,6 @@ sequelize.authenticate().then(() => {
   console.log('Database connection has been established successfully.');
   app.listen(PORT, () => {
     // Server is listening on the specified port
+    console.log(`Server listening on http://localhost:${PORT}.`);
   });
 });

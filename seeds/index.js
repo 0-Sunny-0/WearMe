@@ -1,9 +1,9 @@
-// Import seed functions for different data models
-const seedOutfits = require('./OutfitSeeds');
-const seedOutfitItems = require('./OutfitItemSeeds');
 
 // Import the Sequelize connection instance
 const sequelize = require('../config/connection');
+// Import seed functions for different data models
+const seedOutfits = require('./OutfitSeeds');
+const seedOutfitItems = require('./OutfitItemSeeds');
 
 // Function to seed all data models
 const seedAll = async () => {
