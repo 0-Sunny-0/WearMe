@@ -7,6 +7,7 @@ router.get('/', async (req, res) => {
     const allItem = await OutfitItem.findAll();
     res.status(200).json(allItem);
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
   }
 });
