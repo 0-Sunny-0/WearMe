@@ -3,9 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rochester&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>WearMe Landing</title>
 </head>
 <body>
-    
+    <header id="main-header">
+            <h1>WearMe</h1>
+    </header>
+
+    <div class="sidenav">
+    </div>
+
+    <div class="loginbox">
+        <form id="loginForm">
+            <div>
+                <h1 id="login">Hey There!</h1>
+            </div>
+
+            <div class="logincontainer">
+                <label for="username" id="username"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required><br>
+                <br>
+
+                <label for="psw" id="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required><br>
+                <br>
+
+                <button type="submit">Login</button><br>
+                <br>
+                
+                <label id="remember">
+                    <input type="checkbox" checked="checked" name="remember">Remember Me
+                </label>
+                <span class="psw" id="forgot">Forgot password?</span>
+            </div>
+        </form>
+    </div>
+
+
+    <footer>
+        <h3>Made with 🧡 by Group7</h3><br>
+        <h3>🧡Gale 🧡Michael 🧡Ethan 🧡Jean 🧡Sunny 🧡Cody</h3>
+    </footer>
 </body>
 </html>
