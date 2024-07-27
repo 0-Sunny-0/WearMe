@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const closetCategories = require('./closet-categories');
+const closetCategories = require('./closet');
 const clothingSlots = require('./clothing-slots');
 const outfitItems = require('./outfit-items');
 const outfits = require('./outfits');

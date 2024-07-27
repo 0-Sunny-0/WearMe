@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { OutfitItem } = require('../../models');
+const { Closet } = require('../../models');
 
-// GET all outfit items
+// GET all closets
 router.get('/', async (req, res) => {
   try {
-    const outfitItems = await OutfitItem.findAll();
-    res.status(200).json(outfitItems);
+    const closets = await Closet.findAll();
+    res.status(200).json(closets);
   } catch (err) {
     res.status(500).json(err);
   }

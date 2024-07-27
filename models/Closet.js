@@ -16,6 +16,10 @@ Closet.init(
         key: 'id',
       },
     },
+    clothes: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    }
   },
   {
     // Passing the sequelize instance
