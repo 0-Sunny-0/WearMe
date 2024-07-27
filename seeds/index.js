@@ -6,7 +6,6 @@ const seedOutfitItems = require('./OutfitItemSeeds');
 
 // Function to seed all data models
 const seedAll = async () => {
-  try {
     // Sync the database and force drop/recreate tables
     await sequelize.sync({ force: true });
     console.log('\n----- DATABASE SYNCED -----\n');
@@ -21,10 +20,6 @@ const seedAll = async () => {
 
     // Exit the process after seeding is complete
     process.exit(0);
-  } catch(err) {
-    console.error(err);
-    process.exit(1); // Exit with a non-zero status code to indicate failure
-  }
 };
 
 seedAll();
