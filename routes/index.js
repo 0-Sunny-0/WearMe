@@ -12,7 +12,7 @@ router.use('/api', apiRoutes);
 
 router.get('/', async (req, res) => {
     // Render the 'home' view when the root URL is accessed
-    res.render('login');
+    res.render('home');
   });
 // Exporting the router for use in other parts of the application
 module.exports = router;
