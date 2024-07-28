@@ -10,5 +10,9 @@ const homeRoutes = require('../views');
 // Using the API routes for any requests to '/api'
 router.use('/api', apiRoutes);
 
+router.get('/', async (req, res) => {
+    // Render the 'home' view when the root URL is accessed
+    res.render('login');
+  });
 // Exporting the router for use in other parts of the application
 module.exports = router;
