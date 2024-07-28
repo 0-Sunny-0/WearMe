@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
 });
 
 // Test the database connection and then start the server
-sequelize.authenticate().then(() => {
+sequelize.sync({force:false}).then(() => {
   console.log('Database connection has been established successfully.');
   app.listen(PORT, () => {
     // Server is listening on the specified port
