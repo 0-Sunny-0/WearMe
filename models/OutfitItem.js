@@ -22,25 +22,23 @@ OutfitItem.init(
       allowNull: false
     },
     // Defining the category_id attribute with type INTEGER and not allowing null values
-    category_id: {
-      type: DataTypes.INTEGER,
+    clothing_type: {
+      type: DataTypes.STRING,
       allowNull: false
     },
-    // Defining the slot_id attribute with type STRING and not allowing null values
-    slot_id: {
-      type: DataTypes.STRING,
+    for_men: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
+    for_women: {
+      type: DataTypes.BOOLEAN,
       allowNull: false
     },
     // Defining the image_path attribute with type STRING and not allowing null values
-    image_path: {
+    image_url: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    // Defining the owner attribute with type STRING and not allowing null values
-    owner: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
   },
   {
     // Passing the sequelize instance
