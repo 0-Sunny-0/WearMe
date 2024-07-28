@@ -1,7 +1,6 @@
 const Outfit = require('./Outfit');
-const ClothingSlot = require('./ClothingSlot');
+const Closet = require('./Closet');
 const OutfitItem = require('./OutfitItem');
 const User = require('./User');
-const ClosetCategory = require('./ClothingCategory');
 
-module.exports = { Outfit, ClothingSlot, OutfitItem, User, ClosetCategory };
+module.exports = { Outfit, Closet, OutfitItem, User };
