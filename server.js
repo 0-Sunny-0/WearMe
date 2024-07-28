@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const routes = require('./routes');
+const path = require('path');
 
 // Load environment variables from .env file
 require('dotenv').config();
@@ -43,15 +44,12 @@ app.use(express.json());
 
 // Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static(path.join(__dirname, 'public')));
 // Use the routes defined in the routes folder
 app.use(routes);
 
 // Example route to render the home page with someArr data
-const someArr = [1, 2, 3];
-app.get('/', (req, res) => {
-  res.render('home', { someArr });
-});
+
 
 // Test the database connection and then start the server
 sequelize.sync({force:false}).then(() => {
