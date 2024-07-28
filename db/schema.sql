@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS wearme_db;
+CREATE DATABASE wearme_db;
