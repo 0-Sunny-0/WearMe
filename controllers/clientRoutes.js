@@ -3,7 +3,7 @@ const { User } = require('../models');
 const withAuth = require('../utils/withAuth');
 
 // Route to get all users and render the home page
-router.get('/', withAuth, async (req, res) => {
+router.get('/home', withAuth, async (req, res) => {
   try {
     // Fetch all users, excluding their passwords, and order by name
     const userData = await User.findAll({
