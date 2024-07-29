@@ -22,11 +22,11 @@ Not sure what to wear? Let WearMe help you decide.
 
 ## Visuals
 
+<img src="./README images/WearMe-Landing-page.png" width="700" height="400"/>
+
 ## Installation
 
-## Usage
-
-## Testing
+To install any dependencies used for this application, run npm i.<br>
 
 ## License 
 
