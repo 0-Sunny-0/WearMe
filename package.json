@@ -1,8 +1,8 @@
 {
-  "name": "project-2",
+  "name": "wearme",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node seeds/index.js",

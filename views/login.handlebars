@@ -1,36 +1,18 @@
-
-    <header id="main-header">
-            <h1>WearMe</h1>
-    </header>
-
-    <div class="sidenav">
+<div id="login" class="auth">
+  <form id="login-form">
+    <h1>Welcome!</h1>
+    <div class="input-container">
+      <h2>Username</h2>
+      <input id="username-login" type="text" required>
     </div>
-
-    <div class="loginbox">
-        <form id="loginForm">
-            <div>
-                <h1 id="login">Hey There!</h1>
-            </div>
-
-            <div class="logincontainer">
-                <label for="username" id="username"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="username" required><br>
-                <br>
-
-                <label for="psw" id="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required><br>
-                <br>
-
-                <button type="submit">Login</button><br>
-                <br>
-                
-                <label id="remember">
-                    <input type="checkbox" checked="checked" name="remember">Remember Me
-                </label>
-                <span class="psw" id="forgot">Forgot password?</span>
-            </div>
-        </form>
+    <div class="input-container">
+      <h2>Password</h2>
+      <input id="password-login" type="password" required>
     </div>
+    <button type="submit">Login</button>
+    <a href="/register">Don't have an account?</a>
+  </form>
+</div>
 
 
    
