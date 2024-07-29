@@ -13,5 +13,10 @@ router.get('/login', async (req, res) => {
   res.render('login');
 });
 
+// When a GET request is made to '/register', render the 'register' view
+router.get('/register', async (req, res) => {
+  res.render('register');
+});
+
 // Export the router to be used in other parts of the application
 module.exports = router;

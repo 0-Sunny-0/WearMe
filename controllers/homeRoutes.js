@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../models');
-const withAuth = require('../utils/auth');
+const withAuth = require('../utils/withAuth');
 
 // Route to get all users and render the home page
 router.get('/', withAuth, async (req, res) => {
