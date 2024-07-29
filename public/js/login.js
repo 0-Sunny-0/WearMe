@@ -9,7 +9,7 @@ const loginFormHandler = async (event) => {
   // Check if both email and password are provided
   if (email && password) {
     // Send a POST request to the login API endpoint
-    const response = await fetch('/api/users/login', {
+    const response = await fetch('/api/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }), // Send email and password in the request body
       headers: { 'Content-Type': 'application/json' }, // Set the request headers to indicate JSON content
@@ -26,6 +26,4 @@ const loginFormHandler = async (event) => {
 };
 
 // Add an event listener to the login form to handle form submission
-document
-  .querySelector('#login-form')
-  .addEventListener('submit', loginFormHandler);
+document.querySelector('#login-form').addEventListener('submit', loginFormHandler);

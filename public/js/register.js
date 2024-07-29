@@ -16,7 +16,7 @@ const registerFormHandler = async (event) => {
       return;
     }
     // Send a POST request to the register API endpoint
-    const response = await fetch('/api/users/register', {
+    const response = await fetch('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify({ email, username, password }), // Send email and password in the request body
       headers: { 'Content-Type': 'application/json' }, // Set the request headers to indicate JSON content
@@ -32,6 +32,4 @@ const registerFormHandler = async (event) => {
 };
 
 // Add an event listener to the register form to handle form submission
-document
-  .querySelector('#register-form')
-  .addEventListener('submit', registerFormHandler);
+document.querySelector('#register-form').addEventListener('submit', registerFormHandler);
