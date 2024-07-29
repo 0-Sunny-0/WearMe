@@ -38,6 +38,7 @@ User.init(
     timestamps: false, // Disable timestamps
     freezeTableName: true, // Prevent table name pluralization
     underscored: true, // Use snake_case for automatically added attributes
+    modelName: 'user' // Model name
   }
 );
 

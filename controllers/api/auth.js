@@ -1,17 +1,18 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const bycrpt = require('bcrypt');
 
 // Route for user login
 router.post('/login', async (req, res) => {
   try {
-    // Find user by email
-    const userData = await User.findOne({ where: { email: req.body.email } });
+    // Find user by username
+    const userData = await User.findOne({ where: { username: req.body.username } });
 
     // If user not found, send error response
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'Incorrect username' });
       return;
     }
 
@@ -22,7 +23,7 @@ router.post('/login', async (req, res) => {
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'Incorrect password' });
       return;
     }
 
@@ -37,7 +38,7 @@ router.post('/login', async (req, res) => {
 
   } catch (err) {
     // Send error response in case of any issues
-    res.status(400).json(err);
+    res.status(400).json({error: err.message});
   }
 });
 
@@ -51,7 +52,7 @@ router.post('/logout', (req, res) => {
     });
   } else {
     // If user is not logged in, send error response
-    res.status(404).end();
+    res.status(400).json({error: err.message});
   }
 });
 
@@ -59,7 +60,7 @@ router.post('/logout', (req, res) => {
 router.post('/register', async (req, res) => {
   try {
     // Hash the password before saving it to the database
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const hashedPassword = await bycrpt.hash(req.body.password, 10);
 
     // Create a new user with the hashed password
     const userData = await User.create({
@@ -78,7 +79,8 @@ router.post('/register', async (req, res) => {
     });
   } catch (err) {
     // Handle any errors that occur during user creation
-    res.status(400).json(err);
+    res.status(400).json({error: err.message});
+    console.log(err);
   }
 });
 
