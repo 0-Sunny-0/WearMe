@@ -27,14 +27,12 @@ router.get('/', withAuth, async (req, res) => {
 
 // Route to render the login page
 router.get('/login', (req, res) => {
-  // If user is already logged in, redirect to home page
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
-  }
-
-  // Render the login page
   res.render('login');
+});
+
+// Route to render the register page
+router.get('/register', (req, res) => {
+  res.render('register');
 });
 
 module.exports = router;

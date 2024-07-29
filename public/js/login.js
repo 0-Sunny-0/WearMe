@@ -3,7 +3,7 @@ const loginFormHandler = async (event) => {
   event.preventDefault(); // Prevent the default form submission behavior
 
   // Get the values from the email and password input fields
-  const email = document.querySelector('#email-login').value.trim();
+  const email = document.querySelector('#username-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
   // Check if both email and password are provided
@@ -27,5 +27,5 @@ const loginFormHandler = async (event) => {
 
 // Add an event listener to the login form to handle form submission
 document
-  .querySelector('.login-form')
+  .querySelector('#login-form')
   .addEventListener('submit', loginFormHandler);
