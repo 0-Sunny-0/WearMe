@@ -8,17 +8,14 @@ router.get('/home', withAuth, async (req, res) => {
     // Fetch all users, excluding their passwords, and order by name
     const userData = await User.findAll({
       attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
+      order: [['username', 'ASC']],
     });
 
     // Serialize user data
-    const users = userData.map((project) => project.get({ plain: true }));
+    const users = userData.map((user) => user.get({ plain: true }));
 
     // Render the home page with user data and session info
-    res.render('home', {
-      users,
-      logged_in: req.session.logged_in,
-    });
+    res.render('partials/home')
   } catch (err) {
     // Send error response in case of any issues
     res.status(500).json(err);
@@ -35,4 +32,35 @@ router.get('/register', (req, res) => {
   res.render('register');
 });
 
+// Route to render the home page with the closet section
+router.get('/closet', (req, res) => {
+  // Pass the current URL path to the template
+  res.render('home', { url: req.path });
+});
+
+// Route to render the home page with the outfits section
+router.get('/outfits', (req, res) => {
+  // Pass the current URL path to the template
+  res.render('home', { url: req.path });
+});
+
+// Route to render the home page with the shirts section
+router.get('/shirts', (req, res) => {
+  // Pass the current URL path to the template
+  res.render('home', { url: req.path });
+});
+
+// Route to render the home page with the legwear section
+router.get('/legwear', (req, res) => {
+  // Pass the current URL path to the template
+  res.render('home', { url: req.path });
+});
+
+// Route to render the home page with the footwear section
+router.get('/footwear', (req, res) => {
+  // Pass the current URL path to the template
+  res.render('home', { url: req.path });
+});
+
+// Export the router to be used in other parts of the routerlication
 module.exports = router;

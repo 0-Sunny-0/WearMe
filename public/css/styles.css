@@ -25,12 +25,32 @@ header {
   padding-left: 100px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-header h1 {
+nav {
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
   font-family: Rochester;
   font-size: 75px;
   color:#DF7861;
+}
+
+nav a {
+  font-family: Rochester;
+  font-weight: bold;
+  font-size: 25px;
+  color: black;
+  cursor: pointer;
+  transition-duration: .2s;
+}
+
+nav a:hover {
+  color: #DF7861;
 }
 
 footer {

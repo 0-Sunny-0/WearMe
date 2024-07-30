@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-const bycrpt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 // Route for user login
 router.post('/login', async (req, res) => {
@@ -60,7 +60,7 @@ router.post('/logout', (req, res) => {
 router.post('/register', async (req, res) => {
   try {
     // Hash the password before saving it to the database
-    const hashedPassword = await bycrpt.hash(req.body.password, 10);
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     // Create a new user with the hashed password
     const userData = await User.create({
@@ -83,6 +83,5 @@ router.post('/register', async (req, res) => {
     console.log(err);
   }
 });
-
 
 module.exports = router;
