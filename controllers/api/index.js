@@ -1,10 +1,8 @@
 const router = require('express').Router();
-const auth = require('./auth');
 const closets = require('./closets');
 const outfitItems = require('./outfit-items');
 const outfits = require('./outfits');
 
-router.use('/auth', auth);
 router.use('/closets', closets);
 router.use('/outfit-items', outfitItems);
 router.use('/outfits', outfits);

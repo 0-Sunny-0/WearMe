@@ -9,16 +9,6 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store); // S
 const app = express(); // Initializing the Express application
 const PORT = process.env.PORT || 3001; // Setting the port for the server
 
-// Creating an instance of Handlebars
-const hbs = exphbs.create({
-  partialsDir: path.join(__dirname, 'views/partials'), // Directory for partials
-  helpers: {
-    ifEquals: function(arg1, arg2, options) {
-      return (arg1 == arg2) ? options.fn(this) : options.inverse(this); 
-    }
-  }
-});
-
 // Creating a session configuration object
 app.use(session({
   secret: process.env.SESSION_SECRET, // Secret for signing the session ID cookie
@@ -30,23 +20,38 @@ app.use(session({
   })
 }));
 
-// Setting Handlebars as the view engine
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+// Creating an instance of Handlebars
+const hbs = exphbs.create({
+  defaultLayout: 'main',
+  extname: '.hbs',
+  layoutsDir: path.join(__dirname, 'views/layouts'),
+  partialsDir: path.join(__dirname, 'views/partials'),
+});
 
+// Setting Handlebars as the view engine
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
 app.use(express.static(path.join(__dirname, 'public'))); // Serving static files from the 'public' directory
 
-// Middleware to pass the current URL to the template
+// Middleware to redirect to the login page if not logged in and to the home page if logged in
 app.use((req, res, next) => {
-  res.locals.url = req.url;
+  if (!req.session.logged_in) {
+    if (!req.url.startsWith('/auth')) {
+      return res.redirect('/auth/login');
+    }
+  } else {
+    if (!req.url.startsWith('/home')) {
+      return res.redirect('/home/closet');
+    }
+  }
   next();
 });
 
 app.use(routes); // Using the imported routes
 
-// Syncing the Sequelize models and starting the server
+// Syncing the Sequelize `models and starting the server
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}/home.`));
+  app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}.`));
 });
