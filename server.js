@@ -10,10 +10,17 @@ const app = express(); // Initializing the Express application
 const PORT = process.env.PORT || 3001; // Setting the port for the server
 
 // Creating an instance of Handlebars
-const hbs = exphbs.create({});
+const hbs = exphbs.create({
+  partialsDir: path.join(__dirname, 'views/partials'), // Directory for partials
+  helpers: {
+    ifEquals: function(arg1, arg2, options) {
+      return (arg1 == arg2) ? options.fn(this) : options.inverse(this); 
+    }
+  }
+});
 
-// Session configuration object
-const sess = {
+// Creating a session configuration object
+app.use(session({
   secret: process.env.SESSION_SECRET, // Secret for signing the session ID cookie
   cookie: {}, // Cookie options (can be customized)
   resave: false, // Prevents session from being saved back to the session store if it wasn't modified
@@ -21,9 +28,7 @@ const sess = {
   store: new SequelizeStore({
     db: sequelize // Using Sequelize to store session data
   })
-};
-
-app.use(session(sess)); // Using the session middleware
+}));
 
 // Setting Handlebars as the view engine
 app.engine('handlebars', hbs.engine);
@@ -33,9 +38,15 @@ app.use(express.json()); // Middleware to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
 app.use(express.static(path.join(__dirname, 'public'))); // Serving static files from the 'public' directory
 
+// Middleware to pass the current URL to the template
+app.use((req, res, next) => {
+  res.locals.url = req.url;
+  next();
+});
+
 app.use(routes); // Using the imported routes
 
 // Syncing the Sequelize models and starting the server
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}.`));
+  app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}/home.`));
 });
